@@ -1,0 +1,9 @@
+.\_build\model_user_protocol.o: ..\..\..\User_Model\model_user_protocol.c
+.\_build\model_user_protocol.o: ..\..\..\inc\model_user_protocol.h
+.\_build\model_user_protocol.o: ..\..\..\inc\common_abbr.h
+.\_build\model_user_protocol.o: D:\keil5\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\model_user_protocol.o: ..\config\sdk_config.h
+.\_build\model_user_protocol.o: D:\keil5\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\_build\model_user_protocol.o: ..\..\..\inc\data_transfer.h
+.\_build\model_user_protocol.o: D:\keil5\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\_build\model_user_protocol.o: D:\keil5\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h

@@ -1,0 +1,78 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.33.0.0
+Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information:  ,  , LIC=FYKYW-QMJY6-DYAV3-AUCK2-QS641-KPYPM
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.33.0.0
+Toolchain Path:  D:\keil5\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.33.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      Segger\JL2CM3.dll V2.99.38.0
+Dialog DLL:      TCM.DLL V1.48.0.0
+ 
+<h2>Project:</h2>
+D:\ncs_sdk\nRF5_SDK_17.1.0_user_0727\door_sensor_nRF\ble_peripheral\ble_app_template_mp_kp\pca10100\s140\arm5_no_packs\ble_app_template_pca10100_s140.uvprojx
+Project File Date:  08/02/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\keil5\Keil_v5\ARM\ARMCC\Bin'
+Build target 'application'
+compiling model_ble.c...
+..\..\..\User_Model\model_ble.c(348): warning:  #177-D: variable "err_code"  was declared but never referenced
+  			uint32_t err_code;
+..\..\..\User_Model\model_ble.c(163): warning:  #177-D: variable "m_conn_handles"  was declared but never referenced
+  static ble_conn_state_conn_handle_list_t m_conn_handles = {
+..\..\..\User_Model\model_ble.c(192): warning:  #177-D: variable "m_sec_param"  was declared but never referenced
+  static ble_gap_sec_params_t m_sec_param;	//存储关于绑定配对安全连接的参数
+..\..\..\User_Model\model_ble.c(215): warning:  #177-D: variable "flag_test"  was declared but never referenced
+  static bool flag_test = false;
+..\..\..\User_Model\model_ble.c(909): warning:  #177-D: function "get_rtc_counter"  was declared but never referenced
+  static uint32_t get_rtc_counter(void)
+..\..\..\User_Model\model_ble.c: 5 warnings, 0 errors
+linking...
+Program Size: Code=74056 RO-data=15348 RW-data=2132 ZI-data=13572  
+FromELF: creating hex file...
+".\_build\nrf52833_xxaa.axf" - 0 Error(s), 5 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.6.0.pack
+                ARM.CMSIS.5.6.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.3.0
+
+Package Vendor: NordicSemiconductor
+                http://developer.nordicsemi.com/nRF5_SDK/pieces/nRF_DeviceFamilyPack/NordicSemiconductor.nRF_DeviceFamilyPack.8.40.3.pack
+                NordicSemiconductor.nRF_DeviceFamilyPack.8.40.3
+                Nordic Semiconductor nRF ARM devices Device Family Pack with BSD license.
+   * Component: Startup Version: 8.40.3
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_application
+  D:\keil5\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include
+  D:\keil5\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.40.3\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.3.0
+
+   * Component: NordicSemiconductor::Device:Startup:8.40.3
+      Source file:   Device\Source\system_nrf52.c
+      Source file:   Device\Source\arm\arm_startup_nrf52833.s
+      Include file:  Device\Include\system_nrf52833.h
+      Include file:  Device\Include\system_nrf.h
+Build Time Elapsed:  00:00:03
+</pre>
+</body>
+</html>
