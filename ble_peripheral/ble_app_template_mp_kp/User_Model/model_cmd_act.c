@@ -41,6 +41,10 @@ void local_addr_query_handler(comm_param_t* p_context);
 void calendar_update_handler(comm_param_t* p_context);
 void enter_dfu_handler(comm_param_t* p_context);
 
+/* 以下是一些调试输出指令 */
+void gpio_init_handler(comm_param_t* p_context);
+void glt_handler(comm_param_t* p_context);
+
 /* global variable */
 u8 g_doordata_read_count = 0;
 
@@ -80,7 +84,9 @@ action_table_t cmd_list[CMD_LIST_SIZE] = {
 	{"REMOTE_RESET", remote_reset_handler},
 	{"FORCE_CLEAR", force_clear_handler},
 	{"CALENDAR_UPDATE", calendar_update_handler},
-	{"ENTER_DFU", enter_dfu_handler}
+	{"ENTER_DFU", enter_dfu_handler},
+	{"GPIO_INIT", gpio_init_handler},
+	{"GLT", glt_handler}
 };
 
 /* export function */
@@ -306,7 +312,7 @@ void door_read_handler(comm_param_t* p_context)
 
 		for (u16 i = 1; i <= door_rest; i++)
 		{
-			doordata_record_read(FILE_ID_DATA, i, &door_data, sizeof(door_data_t));
+			file_record_read(FILE_ID_DATA, i, &door_data, sizeof(door_data_t));
 			data_payload_fill(p_packet_buffer, &door_data);
 			p_packet_buffer += DATA_PAYLOAD_SIZE;
 			count++;
@@ -373,15 +379,18 @@ void storage_clear_handler(comm_param_t* p_context)
 			{
 				HAL_file_del(FILE_ID_DATA);
 			}
+			cmd_general_rsp(p_context, "success", strlen("success"));
 		}
 		else
 		{
 			LOGINFO("record is not read.");
+			cmd_general_rsp(p_context, "unread", strlen("unread"));
 		}
 	}
 	else
 	{
 		LOGINFO("record is empty.");
+		cmd_general_rsp(p_context, "empty", strlen("empty"));
 	}
 }
 
@@ -448,6 +457,7 @@ void local_addr_query_handler(comm_param_t* p_context)
 void remote_reset_handler(comm_param_t* p_context)
 {
     UNUSED_PARAMETER(p_context);
+//	global_number_write(FILE_ID_GLOBAL_NO, RECORD_KEY_GLOBAL_NO, &g_door_event_number);
 	LOGINFO("soft reset now!");
     SHUTDOWN_TO(NRF_PWR_MGMT_SHUTDOWN_RESET);
 }
@@ -490,6 +500,20 @@ void enter_dfu_handler(comm_param_t* p_context)
 	LOGINFO("Enter DFU mode.");
 	/* 进入DFU前的配置 */
 	
-	SHUTDOWN_TO(NRF_PWR_MGMT_SHUTDOWN_GOTO_DFU);
+//	SHUTDOWN_TO(NRF_PWR_MGMT_SHUTDOWN_GOTO_DFU);
+}
+
+
+/* 以下指令只在调试过程中使用 */
+void gpio_init_handler(comm_param_t* p_context)
+{
+	bool init = is_gpiote_init();
+	UNUSED_PARAMETER(p_context);
+	LOGINFO("gpio is init: %d", (u8)init);
+}
+void glt_handler(comm_param_t* p_context)
+{
+	UNUSED_PARAMETER(p_context);
+	LOGINFO("glt 0x%x", g_lts);
 }
 

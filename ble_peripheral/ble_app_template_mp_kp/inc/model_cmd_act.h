@@ -18,7 +18,7 @@
 #define RSP_QUEUE_SIZE 5
 #define CMD_PARAM_BUFFER_SIZE 32 /* 这里先给了一个用于暂存命令参数的数组，数组大小为固定32字节，考虑后期是否可以用内存池动态分配 */
 #define ACK_PARAM_BUFFER_SIZE 32
-#define CMD_LIST_SIZE 10
+#define CMD_LIST_SIZE 12
 #define RSP_LIST_SIZE 2
 /* export typedef */
 //typedef struct cmd_comm_param_s

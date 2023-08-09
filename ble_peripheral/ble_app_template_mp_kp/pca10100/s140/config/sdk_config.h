@@ -12097,15 +12097,25 @@
 #define BOARD_IN_USE 1
 #endif
 
-// <e> User authentification
+// <o> User authentification
 //==========================================================
-// <i> There is no sub-config in this option.
+
+// <0=> DISABLE
+// <1=> ENABLE
 
 #ifndef USER_AUTHENTIFICATION
 #define USER_AUTHENTIFICATION 0
 #endif
 
-// </e>
+// <o> Manual simulation
+//==========================================================
+
+// <0=> DISABLE
+// <1=> ENABLE
+
+#ifndef MANUAL_SIMULATION
+#define MANUAL_SIMULATION 1
+#endif
 
 // </h>
 //==========================================================

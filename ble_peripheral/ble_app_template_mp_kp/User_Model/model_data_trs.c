@@ -133,7 +133,11 @@ void data_sending_procedure(door_data_t* p_door_data,  u8 des)
 			NRF_LOG_HEXDUMP_INFO(packet_send, packet_size);
             ble_data_send(packet_send, packet_size, g_central_conn_handle);
             door_sent_queue_push(&door_data_temp);
-            hal_app_timer_start(m_app_timer_ack_timeout, 6000, NULL);
+#if 1 == MANUAL_SIMULATION
+            hal_app_timer_start(m_app_timer_ack_timeout, 15000, NULL);
+#else
+			hal_app_timer_start(m_app_timer_ack_timeout, 6000, NULL);
+#endif
 			LOGINFO("ack timoust timer start.");
             g_flag_acktimer_status = true;
         }

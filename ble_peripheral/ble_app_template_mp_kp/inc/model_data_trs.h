@@ -50,7 +50,7 @@ extern bool g_flag_acktimer_status;
 /* FILE_ID restriction 0x0000~0xBFFF
    RECORD_KEY restriction 0x0001~0xBFFF
  */
-#define FILE_ID_GLOBAL_INFO 0x0000
+
 #define FILE_ID_DATA 0x0020
 
 

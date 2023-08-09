@@ -58,6 +58,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 			if ((BLE_CONN_HANDLE_INVALID == g_manager_conn_handle) && (is_gpiote_init()))
 			{
 				door_magnet_uninit();
+				LOGINFO("door sensor disable.");
 			}
 			fun_bond_status = USER_SUCCESS;
 		}break;
@@ -81,7 +82,14 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 			if (!is_gpiote_init())
 			{
 				door_magnet_init();
+				LOGINFO("door sensor enable.");
 			}
+		}
+		case PM_EVT_BONDED_PEER_CONNECTED:
+		{
+			g_lts = LTS_BOND_CONN;
+			LOGINFO("LTS_BOND_CONN : 0x%x.", g_lts);
+			g_central_conn_handle = p_evt->conn_handle;
 		}
 
         default:

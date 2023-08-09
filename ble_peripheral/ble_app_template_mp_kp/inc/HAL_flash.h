@@ -55,7 +55,7 @@ ret_code_t doordata_record_push(u16 file_id, door_data_t* p_data, u32 size);
  * @param[out] p_data 存储读取的数据
  * @param[in] size 读取的数据大小
 */
-ret_code_t doordata_record_read(u16 file_id, u16 record_key, door_data_t* p_data, size_t size);
+ret_code_t file_record_read(u16 file_id, u16 record_key, void* p_data, size_t size);
 
 /**@brief 删除某文件中的全部记录 
  * 
@@ -77,6 +77,18 @@ void doordata_record_move(u16 file_id, u16 key_des, u16 key_src);
  * @param[in] record_key 记录号
 */
 void HAL_record_del(const u16 file_id, const u16 record_key);
+
+/**@brief 保存开关门事件号
+ *
+ * @detail 该函数用于执行软件复位前存储开关门事件号
+ * 
+ * @param[in] file_id 		文件标识号
+ * @param[in] record_key	记录标识号
+ * @param[in] p_data		数据
+ * 
+ * @retval NRF_STATUS
+*/
+ret_code_t global_number_write(u16 file_id, u16 record_key, u32* p_data);
 
 #endif // __HAL_FLASH_H__
 

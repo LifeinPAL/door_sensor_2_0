@@ -200,24 +200,12 @@ u8 record_inflie_countget(u16 file_id)
 	return count;
 }
 
-/**@brief 向某文件中存储一个记录
- * 
- * @param[in] file_id 文件标识号
- * 
- * @retval NRF_STATUS
-*/
-ret_code_t doordata_record_push(u16 file_id, door_data_t* p_data, u32 size)
+
+static ret_code_t record_write(fds_record_desc_t* p_desc, fds_record_t* p_record)
 {
 	ret_code_t err_code;
-	fds_record_t	record = {0};
-	fds_record_desc_t desc = {0};
-	record.file_id = file_id;
-	record.key = record_inflie_countget(file_id) + 1;
-	record.data.p_data = p_data;
-	record.data.length_words = (size + 3) / 4;
-	
 	m_fds_status.write = false;
-	err_code = fds_record_write(&desc, &record);
+	err_code = fds_record_write(p_desc, p_record);
 	if (err_code != NRF_SUCCESS)
 	{
 		LOGINFO("write %d result: 0x%x, %s.", err_code, fds_error_type[err_code - NRF_ERROR_FDS_ERR_BASE]);
@@ -232,6 +220,26 @@ ret_code_t doordata_record_push(u16 file_id, door_data_t* p_data, u32 size)
 	return err_code;
 }
 
+/**@brief 存储一个开关门事件记录
+ * 
+ * @param[in] file_id 	文件标识号
+ * @param[in] p_data	开关门事件数据
+ * @param[in] size		数据格式大小
+ * 
+ * @retval NRF_STATUS
+*/
+ret_code_t doordata_record_push(u16 file_id, door_data_t* p_data, u32 size)
+{
+	fds_record_t	record = {0};
+	fds_record_desc_t desc = {0};
+	record.file_id = file_id;
+	record.key = record_inflie_countget(file_id) + 1;
+	record.data.p_data = p_data;
+	record.data.length_words = (size + 3) / 4;
+
+	return record_write(&desc, &record);
+}
+
 
 
 /**@brief 从文件中按记录号读取
@@ -241,7 +249,7 @@ ret_code_t doordata_record_push(u16 file_id, door_data_t* p_data, u32 size)
  * @param[out] p_data 存储读取的数据
  * @param[in] size 读取的数据大小
 */
-ret_code_t doordata_record_read(u16 file_id, u16 record_key, door_data_t* p_data, size_t size)
+ret_code_t file_record_read(u16 file_id, u16 record_key, void* p_data, size_t size)
 {
 	ret_code_t err_code;
 	fds_flash_record_t flash_record;
@@ -398,6 +406,29 @@ void HAL_record_del(const u16 file_id, const u16 record_key)
 	{
 		IDLE_ENTER();
 	}
+}
+
+
+/**@brief 保存开关门事件号
+ *
+ * @detail 该函数用于执行软件复位前存储开关门事件号
+ * 
+ * @param[in] file_id 		文件标识号
+ * @param[in] record_key	记录标识号
+ * @param[in] p_data		数据
+ * 
+ * @retval NRF_STATUS
+*/
+ret_code_t global_number_write(u16 file_id, u16 record_key, u32* p_data)
+{
+	fds_record_t	record = {0};
+	fds_record_desc_t desc = {0};
+	record.file_id = file_id;
+	record.key = record_key;
+	record.data.p_data = p_data;
+	record.data.length_words = 4;
+
+	return record_write(&desc, &record);
 }
 
 

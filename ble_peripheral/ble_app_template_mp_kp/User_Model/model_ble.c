@@ -319,6 +319,7 @@ static void auth_request(const u16 conn_handle)
     u8 auth_req[20] = {0xA4,0xB5,0xCC,0x02,0xFF,0x0C,0x41,0x55,0x54,0x48,0x5F,0x52,0x45,0x51,0x55,0x45,0x53,0x54,0xAA,0xED};
 
     ble_data_send(auth_req, (u16)20, conn_handle);
+	NRF_LOG_HEXDUMP_INFO(auth_req, 20);
 }
 
 /**@brief 封装nus服务的数据发送函数
@@ -648,6 +649,7 @@ static void ble_evt_handler_on_disconnect(u16 conn_handle, const ble_gap_evt_dis
 		if ((LTS_NO_BOND == g_lts) && (is_gpiote_init()))
 		{
 			door_magnet_uninit();
+			LOGINFO("door sensor disable.");
 		}
 	}
 }
@@ -968,6 +970,7 @@ void rsp_auth_handler(comm_param_t* p_context)
 		if (!is_gpiote_init())
 		{
 			door_magnet_init();
+			LOGINFO("door sensor enable.");
 		}
 	}
 	else

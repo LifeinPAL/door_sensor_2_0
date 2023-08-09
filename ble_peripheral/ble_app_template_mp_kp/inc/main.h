@@ -54,27 +54,13 @@ extern const char* g_string_status[4];
 
 
 
-/**< private include >*/
-#include "nrf.h"
-
-
-/**< global define >*/
-typedef struct{
-	const char* p_frame_head;
-	uint8_t door_state;
-	uint16_t battery_voltage;
-	uint8_t wkp_source;
-	uint16_t timestamp;
-	uint32_t g_packet_no;
-	uint8_t err_code;
-	const char* p_frame_end;	
-}g_data_collection;
 
 
 
-/**< private define >*/
+/* global define */
 
-
+#define FILE_ID_GLOBAL_NO 0x0001
+#define RECORD_KEY_GLOBAL_NO	0x0080
 
 /**< export variable >*/
 

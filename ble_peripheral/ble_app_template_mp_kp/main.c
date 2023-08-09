@@ -25,6 +25,8 @@
 long_term_status_t 	g_lts 	= LTS_BOND_CONN;
 status_machine_t 	g_sm	= SM_IDLE_READY;
 
+u8 wdt_test_num = 0;
+
 const char* g_string_status[4] = {
 	"success",
 	"failed",
@@ -60,8 +62,9 @@ int main(void)
 	{
 		case RESETREAS_SOFT:
 		{
-			LOGINFO("soft reset.")
-
+			LOGINFO("soft reset.");
+//			file_record_read(FILE_ID_GLOBAL_NO, RECORD_KEY_GLOBAL_NO, &g_door_event_number, sizeof(u32));
+			LOGINFO("global number: %d.", g_door_event_number);
 		}break;
 		case RESETREAS_DOG:
 		{

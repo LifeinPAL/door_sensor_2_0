@@ -22,13 +22,18 @@ Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
 D:\ncs_sdk\nRF5_SDK_17.1.0_user_0727\door_sensor_nRF\ble_peripheral\ble_app_template_mp_kp\pca10100\s140\arm5_no_packs\ble_app_template_pca10100_s140.uvprojx
-Project File Date:  08/08/2023
+Project File Date:  08/09/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\keil5\Keil_v5\ARM\ARMCC\Bin'
 Build target 'application'
+compiling HAL_flash.c...
+compiling user_hardware.c...
+compiling model_bond.c...
+compiling model_data_trs.c...
+compiling model_cmd_act.c...
 compiling model_ble.c...
-..\..\..\User_Model\model_ble.c(353): warning:  #177-D: variable "err_code"  was declared but never referenced
+..\..\..\User_Model\model_ble.c(354): warning:  #177-D: variable "err_code"  was declared but never referenced
   			uint32_t err_code;
 ..\..\..\User_Model\model_ble.c(163): warning:  #177-D: variable "m_conn_handles"  was declared but never referenced
   static ble_conn_state_conn_handle_list_t m_conn_handles = {
@@ -36,13 +41,17 @@ compiling model_ble.c...
   static ble_gap_sec_params_t m_sec_param;	//存储关于绑定配对安全连接的参数
 ..\..\..\User_Model\model_ble.c(215): warning:  #177-D: variable "flag_test"  was declared but never referenced
   static bool flag_test = false;
-..\..\..\User_Model\model_ble.c(914): warning:  #177-D: function "get_rtc_counter"  was declared but never referenced
+..\..\..\User_Model\model_ble.c(915): warning:  #177-D: function "get_rtc_counter"  was declared but never referenced
   static uint32_t get_rtc_counter(void)
 ..\..\..\User_Model\model_ble.c: 5 warnings, 0 errors
+compiling main.c...
+..\..\..\main.c(40): warning:  #177-D: variable "err_code"  was declared but never referenced
+  	ret_code_t err_code;
+..\..\..\main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=74204 RO-data=15360 RW-data=2132 ZI-data=13572  
+Program Size: Code=74560 RO-data=15384 RW-data=2156 ZI-data=13572  
 FromELF: creating hex file...
-".\_build\application.axf" - 0 Error(s), 5 Warning(s).
+".\_build\application.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -69,10 +78,10 @@ Package Vendor: NordicSemiconductor
 
    * Component: NordicSemiconductor::Device:Startup:8.40.3
       Source file:   Device\Source\system_nrf52.c
+      Include file:  Device\Include\system_nrf.h
       Source file:   Device\Source\arm\arm_startup_nrf52833.s
       Include file:  Device\Include\system_nrf52833.h
-      Include file:  Device\Include\system_nrf.h
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:14
 </pre>
 </body>
 </html>

@@ -18,7 +18,7 @@
 #include "HAL_flash.h"
 
 /* global variable */
-u32 g_door_event_number = 0;
+u32 g_door_event_number;
 
 
 
